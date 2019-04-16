@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <ImageView
-            android:id="@+id/fullPaintedBorder"
+            android:id="@+id/border"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/full_painted_border"
@@ -25,10 +25,9 @@
             tools:text="RB"/>
 
     <ImageView
-            android:id="@+id/partialPaintedBorder"
+            android:id="@+id/avatar"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/partial_painted_border"
             android:layout_gravity="center"/>
 </FrameLayout>

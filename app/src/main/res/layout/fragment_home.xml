@@ -44,6 +44,7 @@
             android:layout_height="96dp"
             app:text="Renan Boni"
             app:fullBorder="true"
+            app:imgUrl="http://www.dolciariaborrillo.it/wp-content/uploads/2015/08/man.png"
             android:id="@+id/imageView"
             android:layout_marginTop="64dp"
             app:layout_constraintTop_toTopOf="parent"

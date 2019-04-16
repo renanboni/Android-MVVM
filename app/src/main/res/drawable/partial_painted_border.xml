@@ -13,7 +13,7 @@
           android:left="@dimen/border_width"
           android:right="@dimen/border_width">
         <shape android:shape="oval">
-            <solid android:color="@android:color/black" />
+            <solid android:color="@color/colorPrimary" />
         </shape>
     </item>
 </layer-list>

@@ -1,20 +1,16 @@
 package com.boni.neon.ui.widgets
 
 import android.content.Context
-import android.graphics.Bitmap
-import com.squareup.picasso.Transformation
-import android.graphics.Shader.TileMode
-import android.graphics.BitmapShader
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import com.boni.neon.R
 import com.boni.neon.ext.hide
 import com.boni.neon.ext.show
-import kotlinx.android.synthetic.main.rounded_image_view.view.*
-import com.boni.neon.R
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Transformation
+import kotlinx.android.synthetic.main.rounded_image_view.view.*
 
 class CircularImageView @JvmOverloads constructor(
     context: Context,
@@ -47,28 +43,18 @@ class CircularImageView @JvmOverloads constructor(
 
         setText(text)
         setBorder(fullBorder)
-        // setImage(url)
+        setImage(url)
     }
 
     private fun setImage(url: String?) {
-        if(url.isNullOrEmpty()) {
-            fullPaintedBorder.hide()
-            partialPaintedBorder.hide()
+        if (url.isNullOrEmpty()) {
+            avatar.hide()
             return
         }
-
-        val picasso = Picasso
-            .get()
-            .load(url)
+        avatar.show()
+        Picasso.get().load(url)
             .transform(CircleTransform())
-
-        if(fullBorder) {
-            fullPaintedBorder.show()
-            picasso.into(fullPaintedBorder)
-        } else {
-            partialPaintedBorder.show()
-            picasso.into(partialPaintedBorder)
-        }
+            .into(avatar)
     }
 
     private fun setText(text: String?) {
@@ -90,59 +76,43 @@ class CircularImageView @JvmOverloads constructor(
 
     private fun setBorder(isFullBorder: Boolean) {
         if(isFullBorder) {
-            fullPaintedBorder.show()
-            partialPaintedBorder.hide()
+            border.setImageResource(R.drawable.full_painted_border)
         } else {
-            fullPaintedBorder.hide()
-            partialPaintedBorder.show()
+            border.setImageResource(R.drawable.partial_painted_border)
         }
     }
 
     inner class CircleTransform : Transformation {
-        override fun transform(source: Bitmap?): Bitmap? {
-            source?.let {
-                if (it.isRecycled) {
-                    return@let
-                }
+        override fun transform(source: Bitmap): Bitmap {
+            val size = Math.min(source.width, source.height)
+            val borderWith = resources.getDimension(R.dimen.border_width)
 
-                val width = source.width + R.dimen.border_width
-                val height = source.height + R.dimen.border_width
+            val x = (source.width - size) / 2
+            val y = (source.height - size) / 2
 
-                val canvasBitmap = Bitmap.createBitmap(
-                    width,
-                    height,
-                    Bitmap.Config.ARGB_8888
-                )
-
-                val shader = BitmapShader(
-                    source,
-                    TileMode.CLAMP,
-                    TileMode.CLAMP
-                )
-
-                val paint = Paint().apply {
-                    isAntiAlias = true
-                    setShader(shader)
-                }
-
-                val canvas = Canvas(canvasBitmap)
-                val radius = if (width > height) height.toFloat() / 2f else width.toFloat() / 2f
-                canvas.drawCircle(
-                    (width / 2).toFloat(),
-                    (height / 2).toFloat(),
-                    radius,
-                    paint
-                )
-
-                if (canvasBitmap != source) {
-                    source.recycle()
-                }
-
-                return canvasBitmap
+            val squaredBitmap = Bitmap.createBitmap(source, x, y, size, size)
+            if (squaredBitmap != source) {
+                source.recycle()
             }
-            return null
+
+            val bitmap = Bitmap.createBitmap(size, size, source.config)
+
+            val canvas = Canvas(bitmap)
+            val paint = Paint()
+            val shader = BitmapShader(squaredBitmap,
+                Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+            paint.shader = shader
+            paint.isAntiAlias = true
+
+            val r = (size / 2f)
+            canvas.drawCircle(r, r, r - borderWith, paint)
+
+            squaredBitmap.recycle()
+            return bitmap
         }
 
-        override fun key() = "circle"
+        override fun key(): String {
+            return "circle"
+        }
     }
 }
