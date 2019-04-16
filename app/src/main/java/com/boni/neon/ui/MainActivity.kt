@@ -1,9 +1,10 @@
-package com.boni.neon
+package com.boni.neon.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.boni.neon.R
 import com.boni.neon.ext.hide
 import com.boni.neon.ext.show
 import kotlinx.android.synthetic.main.activity_main.*

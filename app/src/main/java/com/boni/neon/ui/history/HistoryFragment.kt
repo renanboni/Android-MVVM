@@ -1,4 +1,4 @@
-package com.boni.neon.history
+package com.boni.neon.ui.history
 
 import android.os.Bundle
 import android.view.LayoutInflater

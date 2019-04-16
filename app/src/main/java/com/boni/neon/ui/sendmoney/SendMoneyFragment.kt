@@ -1,4 +1,4 @@
-package com.boni.neon.sendmoney
+package com.boni.neon.ui.sendmoney
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,11 @@ class SendMoneyFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_sendmoney, container, false)
+    ): View? = inflater.inflate(
+        R.layout.fragment_sendmoney,
+        container,
+        false
+    )
 
 
 }

@@ -1,4 +1,4 @@
-package com.boni.neon.home
+package com.boni.neon.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

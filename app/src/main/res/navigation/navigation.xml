@@ -7,7 +7,7 @@
 
 
     <fragment android:id="@+id/homeFragment"
-              android:name="com.boni.neon.home.HomeFragment"
+              android:name="com.boni.neon.ui.home.HomeFragment"
               android:label="HomeFragment">
 
         <action android:id="@+id/action_homeFragment_to_historyFragment"
@@ -26,10 +26,10 @@
     </fragment>
 
     <fragment android:id="@+id/sendMoneyFragment"
-              android:name="com.boni.neon.sendmoney.SendMoneyFragment"
+              android:name="com.boni.neon.ui.sendmoney.SendMoneyFragment"
               android:label="Enviar dinheiro"/>
 
     <fragment android:id="@+id/historyFragment"
-              android:name="com.boni.neon.history.HistoryFragment"
+              android:name="com.boni.neon.ui.history.HistoryFragment"
               android:label="Histórico de envios"/>
 </navigation>
