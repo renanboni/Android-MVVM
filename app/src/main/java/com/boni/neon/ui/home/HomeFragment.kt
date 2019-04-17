@@ -4,12 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.boni.neon.R
+import com.boni.neon.ext.hide
+import com.boni.neon.ext.show
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
+
+    companion object {
+        private const val EMAIL = "renan.boni@usp.br"
+        private const val NAME = "Renan Boni"
+    }
+
+    private lateinit var homeViewModel: HomeViewModel
+
+    @Inject
+    lateinit var factory: HomeVMFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +36,12 @@ class HomeFragment : Fragment() {
         container,
         false
     )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        homeViewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
+    }
 
     override fun onViewCreated(
         view: View,
@@ -34,5 +56,41 @@ class HomeFragment : Fragment() {
         sendMoney.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_sendMoneyFragment)
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        homeViewModel.viewState.observe(this, Observer {
+            handleState(it)
+        })
+
+        homeViewModel.error.observe(this, Observer {
+            it?.let { err ->
+                Toast.makeText(activity, err.message, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun handleState(homeViewState: HomeViewState) {
+        if(homeViewState.isLoading) {
+            progress.show()
+        } else {
+            progress.hide()
+        }
+
+        homeViewState.user?.let { user ->
+            email.text = user.email
+            name.text = user.name
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        homeViewModel.authenticate(
+            EMAIL,
+            NAME
+        )
     }
 }
