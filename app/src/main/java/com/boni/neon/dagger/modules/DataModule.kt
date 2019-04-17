@@ -17,4 +17,8 @@ class DataModule {
         authApi: AuthApi,
         userMapper: UserMapper
     ): AuthRepository = AuthRepositoryImpl(authApi, userMapper)
+
+    @Singleton
+    @Provides
+    fun provideUserMapper() = UserMapper()
 }

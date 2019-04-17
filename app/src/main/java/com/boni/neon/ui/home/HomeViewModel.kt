@@ -8,7 +8,7 @@ import com.boni.usecases.GetUser
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
-class HomeViewModel (
+class HomeViewModel @Inject constructor (
     private val getUser: GetUser,
     private val mapper: UserViewMapper
 ) : ViewModel() {

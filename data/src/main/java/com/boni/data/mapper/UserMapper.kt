@@ -5,8 +5,7 @@ import com.boni.domain.entities.UserEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class UserMapper @Inject constructor() : ModelMapper<UserData, UserEntity> {
+class UserMapper : ModelMapper<UserData, UserEntity> {
     override fun mapFromModel(model: UserData): UserEntity {
         return UserEntity(
             model.name,

@@ -16,5 +16,5 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providePostExecutionThread(postExecutionThread: PostExecutionThread) = UiThread()
+    fun providePostExecutionThread(): PostExecutionThread = UiThread()
 }
