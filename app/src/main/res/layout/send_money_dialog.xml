@@ -5,12 +5,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:gravity="center"
         android:padding="12dp"
-        android:background="#385769"
+        android:background="@drawable/send_money_dialog_background"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <ImageView
+            android:id="@+id/close"
             android:src="@drawable/ic_close_white_36dp"
             android:layout_gravity="start"
             android:layout_width="36dp"
@@ -21,29 +22,41 @@
             android:layout_height="64dp"/>
 
     <TextView
+            android:id="@+id/nameTxt"
             tools:text="Renan Boni"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:layout_marginTop="8dp"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     <TextView
+            android:id="@+id/phoneTxt"
             tools:text="(18) 99137-0488"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     <TextView
-            tools:text="Valor a enviar:"
+            android:text="Valor a enviar:"
             android:layout_marginTop="12dp"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+    <EditText
+            android:background="@drawable/send_money_edittext_background"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
     <Button
             android:id="@+id/history"
-            tools:text="Enviar"
+            android:text="Enviar"
+            android:layout_marginTop="4dp"
             app:cornerRadius="32dp"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.boni.neon.ui.sendmoney
+package com.boni.neon.ui.contacts
 
 import com.boni.neon.entities.ContactView
 

@@ -1,14 +1,18 @@
-package com.boni.neon.ui.sendmoney
+package com.boni.neon.ui.contacts
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.boni.neon.NeonApplication
 import com.boni.neon.R
+import com.boni.neon.entities.ContactView
+import com.boni.neon.ui.sendmoney.SendMoneyDialogFragment
 import kotlinx.android.synthetic.main.fragment_sendmoney.*
 import javax.inject.Inject
 
@@ -48,7 +52,22 @@ class SendMoneyFragment: Fragment() {
 
     private fun handleState(state: SendMoneyViewState) {
         state.contacts?.let {
-            contacts.adapter = ContactsAdapter(it)
+            contacts.adapter = ContactsAdapter(it, this::onContactClicked)
+
+            val drawable = ContextCompat.getDrawable(context!!, R.drawable.contacts_separator)
+            contacts.addItemDecoration(ContactListItemDecorator(drawable!!))
+        }
+    }
+
+    private fun onContactClicked(contactView: ContactView) {
+        /*
+            Unfortunately isn't possible to do it using the navigation arch
+         */
+        fragmentManager?.let {
+            SendMoneyDialogFragment.newInstance(contactView).show(
+                it,
+                SendMoneyDialogFragment.TAG
+            )
         }
     }
 }

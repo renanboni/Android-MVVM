@@ -1,4 +1,4 @@
-package com.boni.neon.ui.sendmoney
+package com.boni.neon.ui.contacts
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,8 @@ import com.boni.neon.entities.ContactView
 import kotlinx.android.synthetic.main.contact_item_list.view.*
 
 class ContactsAdapter constructor(
-    private val contacts: MutableList<ContactView>
+    private val contacts: MutableList<ContactView>,
+    private val clickListener: (ContactView) -> Unit
 ) :
     RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
 
@@ -25,14 +26,17 @@ class ContactsAdapter constructor(
         holder: ViewHolder,
         position: Int
     ) {
-        with(contacts[position]) {
-            holder.phone.text = phone
-            holder.name.text = name
-        }
+        holder.bind(contacts[position], clickListener)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.contact_name
         val phone: TextView = itemView.phone
+
+        fun bind(contactView: ContactView, clickListener: (ContactView) -> Unit) {
+            name.text = contactView.name
+            phone.text = contactView.phone
+            itemView.setOnClickListener { clickListener(contactView) }
+        }
     }
 }

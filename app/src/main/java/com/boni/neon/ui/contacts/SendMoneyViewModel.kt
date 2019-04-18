@@ -1,4 +1,4 @@
-package com.boni.neon.ui.sendmoney
+package com.boni.neon.ui.contacts
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

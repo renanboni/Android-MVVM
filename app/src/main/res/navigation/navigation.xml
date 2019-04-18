@@ -11,14 +11,15 @@
               android:label="HomeFragment">
 
         <action android:id="@+id/action_homeFragment_to_historyFragment"
-                app:destination="@id/historyFragment" app:popUpTo="@+id/homeFragment"/>
+                app:destination="@id/historyFragment"
+                app:popUpTo="@+id/homeFragment"/>
 
         <action android:id="@+id/action_homeFragment_to_sendMoneyFragment"
                 app:destination="@id/sendMoneyFragment"/>
     </fragment>
 
     <fragment android:id="@+id/sendMoneyFragment"
-              android:name="com.boni.neon.ui.sendmoney.SendMoneyFragment"
+              android:name="com.boni.neon.ui.contacts.SendMoneyFragment"
               android:label="Enviar dinheiro"/>
 
     <fragment android:id="@+id/historyFragment"
