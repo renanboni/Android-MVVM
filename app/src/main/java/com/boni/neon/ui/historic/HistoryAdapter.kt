@@ -28,11 +28,15 @@ class HistoryAdapter constructor(private val contacts: MutableList<ContactView>)
         private val name = itemView.contact_name
         private val phone = itemView.phone
         private val value = itemView.value
+        private val avatar = itemView.avatar
 
         fun bind(contactView: ContactView) {
             name.text = contactView.name
             phone.text = contactView.phone
             value.text = contactView.value.toMonetary()
+
+            avatar.setName(contactView.name)
+            avatar.setImage(contactView.avatar)
         }
     }
 }

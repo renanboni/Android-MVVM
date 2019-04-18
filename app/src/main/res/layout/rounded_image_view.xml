@@ -25,8 +25,7 @@
             tools:text="RB"/>
 
     <ImageView
-            android:id="@+id/avatar"
-            android:visibility="gone"
+            android:id="@+id/roundedImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"/>

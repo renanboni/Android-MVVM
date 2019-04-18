@@ -10,13 +10,13 @@ import com.boni.neon.entities.GraphView
 import com.boni.neon.ext.toMonetary
 import kotlinx.android.synthetic.main.chart_item_list.view.*
 
-class ChartAdapter constructor(private val graphItens: MutableList<GraphView>):
+class ChartAdapter constructor(private val graphItems: MutableList<GraphView>):
     RecyclerView.Adapter<ChartAdapter.ViewHolder>() {
 
     private var maxValue = 0f
 
     init {
-        maxValue = getMaxValueFromItems(graphItens)
+        maxValue = getMaxValueFromItems(graphItems)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,19 +24,22 @@ class ChartAdapter constructor(private val graphItens: MutableList<GraphView>):
         return ViewHolder(view)
     }
 
-    override fun getItemCount() = graphItens.count()
+    override fun getItemCount() = graphItems.count()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(graphItens[position])
+        holder.bind(graphItems[position])
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        private val avatar = itemView.avatar
         private val line = itemView.line
         private val value = itemView.value
 
         fun bind(chartView: GraphView) {
             value.text = chartView.value.toMonetary().toString()
+            avatar.setName(chartView.name)
+            avatar.setImage(chartView.image)
 
             line.doOnPreDraw {
                 val layoutParams = line.layoutParams

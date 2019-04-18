@@ -43,17 +43,27 @@ class CircularImageView @JvmOverloads constructor(
 
         setText(text)
         setBorder(fullBorder)
-        setImage(url)
+        loadImage(url)
     }
 
-    private fun setImage(url: String?) {
+    fun setName(name: String) {
+        setText(name)
+    }
+
+    fun setImage(url: String) {
+        loadImage(url)
+    }
+
+    private fun loadImage(url: String?) {
         if (url.isNullOrEmpty()) {
             return
         }
-        avatar.show()
-        Picasso.get().load(url)
+        roundedImage.show()
+
+        Picasso.get()
+            .load(url)
             .transform(CircleTransform())
-            .into(avatar)
+            .into(roundedImage)
     }
 
     private fun setText(text: String?) {

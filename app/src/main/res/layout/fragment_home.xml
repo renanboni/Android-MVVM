@@ -46,6 +46,7 @@
             app:text="Renan Boni"
             app:fullBorder="true"
             android:id="@+id/avatar"
+            app:imgUrl="https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png"
             android:layout_marginTop="64dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

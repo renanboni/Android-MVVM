@@ -61,7 +61,7 @@ class HistoryViewModel @Inject constructor(
                     value += c.value
                 }
 
-                val chartItem = GraphView(it.value.first().avatar, value)
+                val chartItem = GraphView(it.value.first().avatar, value, it.value.first().name)
                 chart.add(chartItem)
             }
 
