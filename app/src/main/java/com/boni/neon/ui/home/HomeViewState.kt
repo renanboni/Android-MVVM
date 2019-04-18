@@ -1,8 +1,8 @@
 package com.boni.neon.ui.home
 
-import com.boni.neon.entities.User
+import com.boni.neon.entities.UserView
 
 data class HomeViewState (
     val isLoading: Boolean = true,
-    val user: User? = null
+    val userView: UserView? = null
 )

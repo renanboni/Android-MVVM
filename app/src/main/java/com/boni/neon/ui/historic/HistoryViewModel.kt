@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.boni.domain.entities.ContactEntity
 import com.boni.domain.entities.TransferEntity
+import com.boni.neon.entities.ContactView
+import com.boni.neon.entities.GraphView
 import com.boni.neon.mapper.ContactViewMapper
 import com.boni.usecases.GetTransfers
 import io.reactivex.observers.DisposableObserver
@@ -38,15 +40,40 @@ class HistoryViewModel @Inject constructor(
             val contacts = result.first
             val transfers = result.second
 
-            contacts.forEach { c ->
-                transfers.find { it.clientId == c.id }?.let {
-                    c.value = it.value
+            val history = mutableListOf<ContactView>()
+            val chart = mutableListOf<GraphView>()
+
+            transfers.forEach { t ->
+                contacts.find { t.clientId == it.id }?.let {
+                    it.value = t.value
+                    history.add(mapper.mapToView(it))
                 }
             }
 
+            val group = history.groupBy {
+                it.id
+            }
+
+            group.entries.forEach {
+                var value = 0F
+
+                it.value.forEach { c ->
+                    value += c.value
+                }
+
+                val chartItem = GraphView(it.value.first().avatar, value)
+                chart.add(chartItem)
+            }
+
+            val reversed = chart
+                .sortedWith(compareBy { it.value })
+                .asReversed()
+                .toMutableList()
+
             val newState = viewState.value?.copy(
                 isLoading = false,
-                contacts = contacts.map { mapper.mapToView(it) }.toMutableList()
+                contacts = history,
+                chart = reversed
             )
 
             viewState.value = newState

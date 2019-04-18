@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor (
         override fun onNext(t: UserEntity) {
             val newState = viewState.value?.copy(
                 isLoading = false,
-                user = mapper.mapToView(t)
+                userView = mapper.mapToView(t)
             )
 
             viewState.value = newState

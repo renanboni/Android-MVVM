@@ -1,6 +1,6 @@
 package com.boni.domain.entities
 
-class ContactEntity (
+data class ContactEntity (
     val id: String,
     val name: String,
     val phone: String,

@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
             progress.hide()
         }
 
-        homeViewState.user?.let { user ->
+        homeViewState.userView?.let { user ->
             email.text = user.email
             name.text = user.name
         }
