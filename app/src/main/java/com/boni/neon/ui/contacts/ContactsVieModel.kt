@@ -8,16 +8,16 @@ import com.boni.usecases.GetContacts
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
-class SendMoneyViewModel @Inject constructor(
+class ContactsVieModel @Inject constructor(
     private val getContacts: GetContacts,
     private val mapper: ContactViewMapper
 ): ViewModel() {
 
-    var viewState: MutableLiveData<SendMoneyViewState> = MutableLiveData()
+    var viewState: MutableLiveData<ContactsViewState> = MutableLiveData()
     var error: MutableLiveData<Throwable?> = MutableLiveData()
 
     init {
-        this.viewState.value = SendMoneyViewState()
+        this.viewState.value = ContactsViewState()
     }
 
     fun getContacts() {

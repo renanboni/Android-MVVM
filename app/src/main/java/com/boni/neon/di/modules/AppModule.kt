@@ -1,8 +1,7 @@
-package com.boni.neon.dagger.modules
+package com.boni.neon.di.modules
 
 import android.content.Context
 import com.boni.PostExecutionThread
-import com.boni.mock.MockInterceptor
 import com.boni.neon.UiThread
 import dagger.Module
 import dagger.Provides

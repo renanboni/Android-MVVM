@@ -7,11 +7,11 @@ import com.boni.usecases.GetContacts
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-class SendMoneyVMFactory @Inject constructor(
+class ContactsVMFactory @Inject constructor(
     private val getContacts: GetContacts,
     private val mapper: ContactViewMapper
 ): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return SendMoneyViewModel(getContacts, mapper) as T
+        return ContactsVieModel(getContacts, mapper) as T
     }
 }

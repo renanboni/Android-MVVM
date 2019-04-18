@@ -6,5 +6,6 @@ data class ContactView (
     val id: String,
     val name: String,
     val phone: String,
-    val avatar: String
+    val avatar: String,
+    val value: Float = 0F
 ): Serializable

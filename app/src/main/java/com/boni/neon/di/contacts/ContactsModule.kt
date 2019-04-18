@@ -1,15 +1,15 @@
-package com.boni.neon.dagger.sendmoney
+package com.boni.neon.di.contacts
 
 import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
 import com.boni.neon.mapper.ContactViewMapper
-import com.boni.neon.ui.contacts.SendMoneyVMFactory
+import com.boni.neon.ui.contacts.ContactsVMFactory
 import com.boni.usecases.GetContacts
 import dagger.Module
 import dagger.Provides
 
 @Module
-class SendMoneyModule {
+class ContactsModule {
 
     @Provides
     fun provideGetContacts(
@@ -23,7 +23,7 @@ class SendMoneyModule {
     fun provideSendMoneyVMFactory(
         getContacts: GetContacts,
         mapper: ContactViewMapper
-    ): SendMoneyVMFactory {
-        return SendMoneyVMFactory(getContacts, mapper)
+    ): ContactsVMFactory {
+        return ContactsVMFactory(getContacts, mapper)
     }
 }

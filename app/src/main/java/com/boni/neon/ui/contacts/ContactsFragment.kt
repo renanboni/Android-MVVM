@@ -8,27 +8,26 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.boni.neon.NeonApplication
 import com.boni.neon.R
 import com.boni.neon.entities.ContactView
 import com.boni.neon.ui.sendmoney.SendMoneyDialogFragment
-import kotlinx.android.synthetic.main.fragment_sendmoney.*
+import kotlinx.android.synthetic.main.fragment_contacts.*
 import javax.inject.Inject
 
-class SendMoneyFragment: Fragment() {
+class ContactsFragment: Fragment() {
 
-    private lateinit var sendMoneyViewModel: SendMoneyViewModel
+    private lateinit var contactsVieModel: ContactsVieModel
 
     @Inject
-    lateinit var factory: SendMoneyVMFactory
+    lateinit var factory: ContactsVMFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(
-        R.layout.fragment_sendmoney,
+        R.layout.fragment_contacts,
         container,
         false
     )
@@ -37,20 +36,20 @@ class SendMoneyFragment: Fragment() {
         super.onCreate(savedInstanceState)
 
         (activity?.application as NeonApplication).createSendMoneyComponent()?.inject(this)
-        sendMoneyViewModel = ViewModelProviders.of(this, factory).get(SendMoneyViewModel::class.java)
+        contactsVieModel = ViewModelProviders.of(this, factory).get(ContactsVieModel::class.java)
 
-        sendMoneyViewModel.getContacts()
+        contactsVieModel.getContacts()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        sendMoneyViewModel.viewState.observe(this, Observer {
+        contactsVieModel.viewState.observe(this, Observer {
             it?.let { handleState(it) }
         })
     }
 
-    private fun handleState(state: SendMoneyViewState) {
+    private fun handleState(state: ContactsViewState) {
         state.contacts?.let {
             contacts.adapter = ContactsAdapter(it, this::onContactClicked)
 
@@ -61,7 +60,7 @@ class SendMoneyFragment: Fragment() {
 
     private fun onContactClicked(contactView: ContactView) {
         /*
-            Unfortunately isn't possible to do it using the navigation arch
+            Unfortunately there isn't a proper way to do it using the navigation arch
          */
         fragmentManager?.let {
             SendMoneyDialogFragment.newInstance(contactView).show(

@@ -12,7 +12,8 @@ class ContactViewMapper @Inject constructor() : Mapper<ContactEntity, ContactVie
             id = domain.id,
             avatar = domain.avatar,
             name = domain.name,
-            phone = domain.phone
+            phone = domain.phone,
+            value = domain.value
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.boni.neon.dagger.home
+package com.boni.neon.di.home
 
 import com.boni.PostExecutionThread
 import com.boni.domain.AuthRepository

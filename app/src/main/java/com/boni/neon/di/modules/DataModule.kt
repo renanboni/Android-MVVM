@@ -1,8 +1,9 @@
-package com.boni.neon.dagger.modules
+package com.boni.neon.di.modules
 
 import com.boni.data.api.AuthApi
 import com.boni.data.api.NeonApi
 import com.boni.data.mapper.ContactMapper
+import com.boni.data.mapper.TransferMapper
 import com.boni.data.mapper.UserMapper
 import com.boni.data.repository.AuthRepositoryImpl
 import com.boni.data.repository.NeonRepositoryImpl
@@ -26,8 +27,9 @@ class DataModule {
     @Singleton
     fun provideNeonRepository(
         neonApi: NeonApi,
-        contactMapper: ContactMapper
-    ): NeonRepository = NeonRepositoryImpl(neonApi, contactMapper)
+        contactMapper: ContactMapper,
+        transferMapper: TransferMapper
+    ): NeonRepository = NeonRepositoryImpl(neonApi, contactMapper, transferMapper)
 
     @Singleton
     @Provides
@@ -36,4 +38,8 @@ class DataModule {
     @Provides
     @Singleton
     fun provideContactMapper() = ContactMapper()
+
+    @Singleton
+    @Provides
+    fun provideTransferMapper() = TransferMapper()
 }

@@ -10,6 +10,7 @@ class MockInterceptor: Interceptor {
 
         private const val GENERATE_TOKEN = "/GenerateToken"
         private const val CONTACTS = "/Contacts"
+        private const val TRANSFERS = "/GetTransfers"
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -20,6 +21,7 @@ class MockInterceptor: Interceptor {
             val mockResponse = when (path) {
                 GENERATE_TOKEN -> user
                 CONTACTS -> contacts
+                TRANSFERS -> transfers
                 else -> ""
             }
 
@@ -59,10 +61,43 @@ const val contacts = """
 		"avatar": ""
 	},
 	{
-		"id": "1",
+		"id": "2",
 		"name": "Renan",
 		"phone": "(18)99137-0488",
 		"avatar": ""
+	}
+]
+"""
+
+const val transfers = """
+[
+	{
+		"id": "10",
+		"clientId": "1",
+		"value": 100,
+		"token": "1d40d305-c836-43a2-b4db-acc56bcc1393",
+		"data": "2016-08-02T14:25:37.55"
+	},
+	{
+		"id": "10",
+		"clientId": "1",
+		"value": 200,
+		"token": "1d40d305-c836-43a2-b4db-acc56bcc1393",
+		"data": "2016-08-02T14:25:37.55"
+	},
+	{
+		"id": "10",
+		"clientId": "2",
+		"value": 300,
+		"token": "1d40d305-c836-43a2-b4db-acc56bcc1393",
+		"data": "2016-08-02T14:25:37.55"
+	},
+	{
+		"id": "10",
+		"clientId": "2",
+		"value": 400,
+		"token": "1d40d305-c836-43a2-b4db-acc56bcc1393",
+		"data": "2016-08-02T14:25:37.55"
 	}
 ]
 """

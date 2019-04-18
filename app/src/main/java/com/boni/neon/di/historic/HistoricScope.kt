@@ -1,7 +1,7 @@
-package com.boni.neon.dagger.sendmoney
+package com.boni.neon.di.historic
 
 import javax.inject.Scope
 
 @Scope
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-annotation class SendMoneyScope
+annotation class HistoricScope

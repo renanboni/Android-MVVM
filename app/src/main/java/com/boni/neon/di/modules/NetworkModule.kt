@@ -1,13 +1,11 @@
-package com.boni.neon.dagger.modules
+package com.boni.neon.di.modules
 
-import android.content.Context
 import com.boni.data.api.AuthApi
 import com.boni.data.api.NeonApi
 import com.boni.mock.MockInterceptor
 import com.boni.neon.BuildConfig
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -30,8 +30,8 @@ class ContactsAdapter constructor(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.contact_name
-        val phone: TextView = itemView.phone
+        private val name: TextView = itemView.contact_name
+        private val phone: TextView = itemView.phone
 
         fun bind(contactView: ContactView, clickListener: (ContactView) -> Unit) {
             name.text = contactView.name
