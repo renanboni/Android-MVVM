@@ -1,16 +1,15 @@
 package com.boni.data.api
 
+import com.boni.data.entities.UserData
 import io.reactivex.Observable
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AuthApi {
 
     @GET("GenerateToken")
     fun authenticate(
-        @Path("email") email: String,
-        @Path("name") name: String
-    ): Observable<UserResult>
-
-
+        @Query("email") email: String,
+        @Query("name") name: String
+    ): Observable<UserData>
 }

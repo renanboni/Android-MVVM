@@ -5,26 +5,36 @@ import com.boni.neon.dagger.AppComponent
 import com.boni.neon.dagger.DaggerAppComponent
 import com.boni.neon.dagger.home.HomeModule
 import com.boni.neon.dagger.home.HomeSubComponent
-import com.boni.neon.dagger.modules.AppModule
 import com.boni.neon.dagger.modules.NetworkModule
+import com.boni.neon.dagger.sendmoney.SendMoneyModule
+import com.boni.neon.dagger.sendmoney.SendMoneySubComponent
 
 class NeonApplication: Application() {
 
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
 
     private var homeSubComponent: HomeSubComponent? = null
+    private var sendMoneySubComponent: SendMoneySubComponent? = null
 
     override fun onCreate() {
         super.onCreate()
 
         appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule())
-            .networkModule(NetworkModule("http://teste"))
+            .networkModule(NetworkModule("http://processoseletivoneon.neonhomol.com.br"))
             .build()
     }
 
     fun createHomeComponent(): HomeSubComponent? {
-        homeSubComponent = appComponent.plus(HomeModule())
+        if(homeSubComponent == null) {
+            homeSubComponent = appComponent.plus(HomeModule())
+        }
         return homeSubComponent
+    }
+
+    fun createSendMoneyComponent(): SendMoneySubComponent? {
+        if(sendMoneySubComponent == null) {
+            sendMoneySubComponent = appComponent.plus(SendMoneyModule())
+        }
+        return sendMoneySubComponent
     }
 }

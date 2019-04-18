@@ -11,7 +11,7 @@
               android:label="HomeFragment">
 
         <action android:id="@+id/action_homeFragment_to_historyFragment"
-                app:destination="@id/historyFragment"/>
+                app:destination="@id/historyFragment" app:popUpTo="@+id/homeFragment"/>
 
         <action android:id="@+id/action_homeFragment_to_sendMoneyFragment"
                 app:destination="@id/sendMoneyFragment"/>

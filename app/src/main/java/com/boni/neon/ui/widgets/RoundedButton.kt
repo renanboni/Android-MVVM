@@ -48,7 +48,6 @@ class CircularImageView @JvmOverloads constructor(
 
     private fun setImage(url: String?) {
         if (url.isNullOrEmpty()) {
-            avatar.hide()
             return
         }
         avatar.show()
@@ -67,7 +66,7 @@ class CircularImageView @JvmOverloads constructor(
 
         with(text.split(" ")) {
             name.text = if(count() > 1) {
-                (get(0)[0].toString() + get(1)[0]).toUpperCase()
+                (get(0)[0].toString() + get(0)[1]).toUpperCase()
             } else {
                 get(0)[0].toUpperCase().toString()
             }

@@ -16,6 +16,10 @@ class HomeViewModel @Inject constructor (
     var viewState: MutableLiveData<HomeViewState> = MutableLiveData()
     var error: MutableLiveData<Throwable?> = MutableLiveData()
 
+    init {
+        this.viewState.value = HomeViewState()
+    }
+
     fun authenticate(
         email: String,
         name: String

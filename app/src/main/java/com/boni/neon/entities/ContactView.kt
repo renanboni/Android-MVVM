@@ -1,6 +1,6 @@
-package com.boni.data.entities
+package com.boni.neon.entities
 
-class ContactData (
+data class ContactView (
     val id: String,
     val name: String,
     val phone: String,

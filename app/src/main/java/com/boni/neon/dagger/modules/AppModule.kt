@@ -2,6 +2,7 @@ package com.boni.neon.dagger.modules
 
 import android.content.Context
 import com.boni.PostExecutionThread
+import com.boni.mock.MockInterceptor
 import com.boni.neon.UiThread
 import dagger.Module
 import dagger.Provides

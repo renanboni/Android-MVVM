@@ -21,7 +21,7 @@ class AuthRepositoryImpl (
             name = name
         ).subscribeOn(Schedulers.io())
             .map {
-                mapper.mapFromModel(it.user)
+                mapper.mapFromModel(it)
             }
     }
 }

@@ -43,6 +43,11 @@ class HomeFragment : Fragment() {
 
         (activity?.application as NeonApplication).createHomeComponent()?.inject(this)
         homeViewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
+
+        homeViewModel.authenticate(
+            EMAIL,
+            NAME
+        )
     }
 
     override fun onViewCreated(
@@ -64,12 +69,13 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         homeViewModel.viewState.observe(this, Observer {
-            handleState(it)
+            it?.let { state -> handleState(state) }
         })
 
         homeViewModel.error.observe(this, Observer {
             it?.let { err ->
                 Toast.makeText(activity, err.message, Toast.LENGTH_LONG).show()
+                progress.hide()
             }
         })
     }
@@ -85,14 +91,5 @@ class HomeFragment : Fragment() {
             email.text = user.email
             name.text = user.name
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        homeViewModel.authenticate(
-            EMAIL,
-            NAME
-        )
     }
 }
