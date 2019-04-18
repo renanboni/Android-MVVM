@@ -57,7 +57,7 @@
             android:layout_marginRight="8dp"/>
 
     <TextView
-            android:text="Renan Boni"
+            tools:text="Renan Boni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/name"
@@ -74,7 +74,7 @@
             android:layout_marginRight="8dp"/>
 
     <TextView
-            android:text="renan.boni@usp.br"
+            tools:text="renan.boni@usp.br"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
@@ -88,7 +88,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"/>
 
-    <ProgressBar
+    <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,5 +101,9 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="loading.json"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

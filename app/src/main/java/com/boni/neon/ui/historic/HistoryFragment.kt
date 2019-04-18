@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.boni.neon.NeonApplication
 import com.boni.neon.R
+import com.boni.neon.ext.hide
+import com.boni.neon.ext.show
 import com.boni.neon.ui.contacts.ContactListItemDecorator
 import kotlinx.android.synthetic.main.fragment_history.*
 import javax.inject.Inject
@@ -59,6 +61,12 @@ class HistoryFragment: Fragment() {
         state.chart?.let {
             chart.adapter = ChartAdapter(it)
             chart.addItemDecoration(ChartDecorator())
+        }
+
+        if(state.isLoading) {
+            progress.show()
+        } else {
+            progress.hide()
         }
     }
 }

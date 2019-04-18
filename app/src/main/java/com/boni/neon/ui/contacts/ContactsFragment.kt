@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.boni.neon.NeonApplication
 import com.boni.neon.R
 import com.boni.neon.entities.ContactView
+import com.boni.neon.ext.hide
+import com.boni.neon.ext.show
 import com.boni.neon.ui.sendmoney.SendMoneyDialogFragment
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import javax.inject.Inject
@@ -55,6 +57,12 @@ class ContactsFragment: Fragment() {
 
             val drawable = ContextCompat.getDrawable(context!!, R.drawable.contacts_separator)
             contacts.addItemDecoration(ContactListItemDecorator(drawable!!))
+        }
+
+        if(state.isLoading) {
+            progress.show()
+        } else {
+            progress.hide()
         }
     }
 
