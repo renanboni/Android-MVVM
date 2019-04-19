@@ -4,6 +4,7 @@ import com.boni.data.entities.ContactData
 import com.boni.data.entities.TransferData
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface NeonApi {
 
@@ -13,5 +14,6 @@ interface NeonApi {
     @GET("GetTransfers")
     fun getTransfers(): Observable<MutableList<TransferData>>
 
-    fun sendMoney(): Observable<TransferData>
+    @POST("SendMoney")
+    fun sendMoney(): Observable<Boolean>
 }

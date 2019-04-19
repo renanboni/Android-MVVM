@@ -7,5 +7,5 @@ import io.reactivex.Observable
 interface NeonRepository {
     fun getContacts(): Observable<MutableList<ContactEntity>>
     fun getTransfers(): Observable<MutableList<TransferEntity>>
-    fun sendMoney()
+    fun sendMoney(): Observable<Boolean>
 }

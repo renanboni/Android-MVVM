@@ -18,6 +18,7 @@
             android:layout_height="36dp"/>
 
     <com.boni.neon.ui.widgets.CircularImageView
+            android:id="@+id/avatarImg"
             android:layout_width="64dp"
             android:layout_height="64dp"/>
 

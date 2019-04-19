@@ -49,6 +49,8 @@ class SendMoneyDialogFragment: DialogFragment() {
             with(it.getSerializable(CONTACT) as ContactView) {
                 nameTxt.text = name
                 phoneTxt.text = phone
+                avatarImg.setImage(avatar)
+                avatarImg.setName(name)
             }
         }
 

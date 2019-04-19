@@ -27,8 +27,8 @@ class NeonRepositoryImpl (
             .map { it.map { transferMapper.mapFromModel(it) }.toMutableList() }
     }
 
-    override fun sendMoney() {
-
+    override fun sendMoney(): Observable<Boolean> {
+        return api.sendMoney()
+            .subscribeOn(Schedulers.io())
     }
-
 }
