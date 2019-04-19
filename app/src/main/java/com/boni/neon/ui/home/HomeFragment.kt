@@ -88,8 +88,8 @@ class HomeFragment : Fragment() {
         }
 
         homeViewState.userView?.let { user ->
+            user_name.text = user.name
             email.text = user.email
-            name.text = user.name
         }
     }
 }
