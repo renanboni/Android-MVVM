@@ -22,4 +22,9 @@
             tools:listitem="@layout/contact_item_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+    <include
+            android:id="@+id/emptyList"
+            android:visibility="gone"
+            layout="@layout/empty_state"/>
 </RelativeLayout>

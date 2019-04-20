@@ -3,6 +3,11 @@ package com.boni.data
 import com.boni.domain.entities.ContactEntity
 import com.boni.domain.entities.TransferEntity
 import com.boni.domain.entities.UserEntity
+import com.boni.mock.MockInterceptor
+import com.google.gson.Gson
+import okhttp3.Protocol
+import okhttp3.Response
+import okhttp3.ResponseBody
 
 class MockData {
     companion object {
@@ -10,7 +15,7 @@ class MockData {
         private var transfers = mutableListOf<TransferEntity>()
 
         fun getUser(): UserEntity {
-            return UserEntity("Renan", "renan.boni@usp.br", "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png")
+            return UserEntity("Renan", "renan.boni@usp.br", "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png", "1d40d305-c836-43a2-b4db-acc56bcc1393")
         }
 
         fun getContacts(): MutableList<ContactEntity> {
@@ -51,18 +56,17 @@ class MockData {
         }
 
         fun getTransfers(): MutableList<TransferEntity> {
-            val t1 = TransferEntity("10", "1", 100.50f, "1d40d305-c836-43a2-b4db-acc56bcc1393", "2016-08-02T14:25:37.55")
-            val t2 = TransferEntity("12", "4", 2200.00f, "1d40d305-c836-43a2-b4db-acc56bcc1393", "2016-08-02T14:25:37.55")
-
-            val transfers = mutableListOf<TransferEntity>()
-            transfers.add(t1)
-            transfers.add(t2)
-
             return transfers
         }
 
-        fun addTransfer(transferEntity: TransferEntity) {
-            transfers.add(transferEntity)
+        fun addTransfer(
+            clientId: String,
+            value: Float
+        ): Boolean {
+            val transfer = TransferEntity("1", clientId, value, "token", "data")
+            transfers.add(transfer)
+
+            return true
         }
     }
 }

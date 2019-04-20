@@ -14,6 +14,7 @@ import com.boni.neon.entities.ContactView
 import com.boni.neon.ext.hide
 import com.boni.neon.ext.show
 import com.boni.neon.ui.sendmoney.SendMoneyDialogFragment
+import kotlinx.android.synthetic.main.empty_state.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import javax.inject.Inject
 
@@ -53,10 +54,17 @@ class ContactsFragment: Fragment() {
 
     private fun handleState(state: ContactsViewState) {
         state.contacts?.let {
-            contacts.adapter = ContactsAdapter(it, this::onContactClicked)
+            if(it.isEmpty()) {
+                emptyList.show()
+                animation.playAnimation()
+            } else {
+                contacts.adapter = ContactsAdapter(it, this::onContactClicked)
 
-            val drawable = ContextCompat.getDrawable(context!!, R.drawable.contacts_separator)
-            contacts.addItemDecoration(ContactListItemDecorator(drawable!!))
+                val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.contacts_separator)
+                drawable?.let {
+                    contacts.addItemDecoration(ContactListItemDecorator(it))
+                }
+            }
         }
 
         if(state.isLoading) {

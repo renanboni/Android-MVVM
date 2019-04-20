@@ -28,17 +28,31 @@ class MockInterceptor: Interceptor {
                 GENERATE_TOKEN -> MockData.getUser()
                 CONTACTS -> MockData.getContacts()
                 TRANSFERS -> MockData.getTransfers()
-                SEND_MONEY -> true
+                SEND_MONEY -> {
+                    val body = chain.request().body() as FormBody
+                    val clientId = body.encodedValue(0)
+                    val value = body.encodedValue(1).toFloat()
+
+                    MockData.addTransfer(
+                        clientId,
+                        value
+                    )
+                }
                 else -> ""
             }
 
-            return Response.Builder()
+            val response = Response.Builder()
                 .message("Response (mock): ")
                 .body(ResponseBody.create(MEDIA_JSON, Gson().toJson(mockResponse).toByteArray()))
                 .request(chain.request())
                 .protocol(Protocol.HTTP_2)
                 .code(200)
-                .build()
+
+            if(path == GENERATE_TOKEN) {
+                response.addHeader("x-auth-token", "1d40d305-c836-43a2-b4db-acc56bcc1393")
+            }
+
+            return response.build()
         } else {
             throw IllegalAccessError(
                 "MockInterceptor is only meant for Testing Purposes and " +

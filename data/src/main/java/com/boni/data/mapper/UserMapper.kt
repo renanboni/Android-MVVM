@@ -10,7 +10,8 @@ class UserMapper : ModelMapper<UserData, UserEntity> {
         return UserEntity(
             model.name,
             model.email,
-            model.avatar
+            model.avatar,
+            model.token
         )
     }
 }

@@ -15,11 +15,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.boni.neon.NeonApplication
+import com.boni.neon.R
 import com.boni.neon.entities.ContactView
-import com.boni.neon.ext.hide
-import com.boni.neon.ext.show
-import com.boni.neon.ext.showMessage
-import com.boni.neon.ext.toMonetary
+import com.boni.neon.ext.*
 import kotlinx.android.synthetic.main.send_money_dialog.*
 import javax.inject.Inject
 
@@ -128,15 +126,16 @@ class SendMoneyDialogFragment: DialogFragment() {
     private fun handleState(state: SendMoneyState) {
         if(state.isLoading) {
             progress.show()
-            send.isEnabled = false
+            send.disable()
         } else {
             progress.hide()
-            send.isEnabled = true
+            send.enable()
         }
 
         if(state.moneySent) {
             fireworks.show()
             fireworks.playAnimation()
+            send.disable()
         }
     }
 
@@ -157,7 +156,7 @@ class SendMoneyDialogFragment: DialogFragment() {
             override fun onAnimationStart(animation: Animator?) {}
 
             override fun onAnimationEnd(animation: Animator) {
-                activity?.showMessage("Sua transferência foi executada com sucesso! Aproveite para fazer outra :)")
+                activity?.showMessage(getString(R.string.succesful_transfer_msg))
                 dismiss()
             }
         })

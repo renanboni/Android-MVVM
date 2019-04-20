@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Neon</string>
+    <string name="succesful_transfer_msg">Sua transferência foi executada com sucesso! Aproveite para fazer outra :)
+    </string>
 </resources>

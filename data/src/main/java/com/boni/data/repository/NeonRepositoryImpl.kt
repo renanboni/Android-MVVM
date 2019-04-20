@@ -1,5 +1,6 @@
 package com.boni.data.repository
 
+import com.boni.data.TokenManager
 import com.boni.data.api.NeonApi
 import com.boni.data.mapper.ContactMapper
 import com.boni.data.mapper.TransferMapper
@@ -12,16 +13,17 @@ import io.reactivex.schedulers.Schedulers
 class NeonRepositoryImpl (
     private val api: NeonApi,
     private val contactMapper: ContactMapper,
-    private val transferMapper: TransferMapper
+    private val transferMapper: TransferMapper,
+    private val tokenManager: TokenManager
 ): NeonRepository {
     override fun getContacts(): Observable<MutableList<ContactEntity>> {
-        return api.getContacts()
+        return api.getContacts(tokenManager.retrieveToken())
             .subscribeOn(Schedulers.io())
             .map { it.map { contactMapper.mapFromModel(it) }.toMutableList() }
     }
 
     override fun getTransfers(): Observable<MutableList<TransferEntity>> {
-        return api.getTransfers()
+        return api.getTransfers(tokenManager.retrieveToken())
             .subscribeOn(Schedulers.io())
             .map { it.map { transferMapper.mapFromModel(it) }.toMutableList() }
     }
@@ -30,7 +32,7 @@ class NeonRepositoryImpl (
         clientId: String,
         value: Float
     ): Observable<Boolean> {
-        return api.sendMoney(clientId, value)
+        return api.sendMoney(tokenManager.retrieveToken(), clientId, value)
             .subscribeOn(Schedulers.io())
     }
 }

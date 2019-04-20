@@ -13,6 +13,7 @@ import com.boni.neon.R
 import com.boni.neon.ext.hide
 import com.boni.neon.ext.show
 import com.boni.neon.ui.contacts.ContactListItemDecorator
+import kotlinx.android.synthetic.main.empty_state.*
 import kotlinx.android.synthetic.main.fragment_history.*
 import javax.inject.Inject
 
@@ -54,8 +55,15 @@ class HistoryFragment: Fragment() {
         state.contacts?.let {
             transfers.adapter = HistoryAdapter(it)
 
-            val drawable = ContextCompat.getDrawable(context!!, R.drawable.contacts_separator)
-            transfers.addItemDecoration(ContactListItemDecorator(drawable!!))
+            if(it.isEmpty()) {
+                emptyList.show()
+                animation.playAnimation()
+            } else {
+                val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.contacts_separator)
+                drawable?.let {
+                    transfers.addItemDecoration(ContactListItemDecorator(it))
+                }
+            }
         }
 
         state.chart?.let {

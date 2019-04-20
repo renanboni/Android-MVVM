@@ -14,3 +14,11 @@ fun View.show() {
         visibility = VISIBLE
     }
 }
+
+fun View.enable() {
+    isEnabled = true
+}
+
+fun View.disable() {
+    isEnabled = false
+}

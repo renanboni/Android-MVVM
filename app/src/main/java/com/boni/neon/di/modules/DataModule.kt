@@ -1,5 +1,6 @@
 package com.boni.neon.di.modules
 
+import com.boni.data.TokenManager
 import com.boni.data.api.AuthApi
 import com.boni.data.api.NeonApi
 import com.boni.data.mapper.ContactMapper
@@ -20,16 +21,31 @@ class DataModule {
     @Singleton
     fun provideAuthRepository(
         authApi: AuthApi,
-        userMapper: UserMapper
-    ): AuthRepository = AuthRepositoryImpl(authApi, userMapper)
+        userMapper: UserMapper,
+        tokenManager: TokenManager
+    ): AuthRepository = AuthRepositoryImpl(
+        authApi,
+        userMapper,
+        tokenManager
+    )
 
     @Provides
     @Singleton
     fun provideNeonRepository(
         neonApi: NeonApi,
         contactMapper: ContactMapper,
-        transferMapper: TransferMapper
-    ): NeonRepository = NeonRepositoryImpl(neonApi, contactMapper, transferMapper)
+        transferMapper: TransferMapper,
+        tokenManager: TokenManager
+    ): NeonRepository = NeonRepositoryImpl(
+        neonApi,
+        contactMapper,
+        transferMapper,
+        tokenManager
+    )
+
+    @Singleton
+    @Provides
+    fun provideTokenManager() = TokenManager()
 
     @Singleton
     @Provides
