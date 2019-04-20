@@ -6,6 +6,9 @@ import com.boni.domain.entities.UserEntity
 
 class MockData {
     companion object {
+
+        private var transfers = mutableListOf<TransferEntity>()
+
         fun getUser(): UserEntity {
             return UserEntity("Renan", "renan.boni@usp.br", "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png")
         }
@@ -56,6 +59,10 @@ class MockData {
             transfers.add(t2)
 
             return transfers
+        }
+
+        fun addTransfer(transferEntity: TransferEntity) {
+            transfers.add(transferEntity)
         }
     }
 }

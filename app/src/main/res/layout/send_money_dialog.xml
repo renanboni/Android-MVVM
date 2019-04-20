@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:visibility="gone"
-            app:lottie_autoPlay="true"
+            app:lottie_autoPlay="false"
             app:lottie_loop="false"
             app:lottie_fileName="fireworks.json"/>
 </FrameLayout>
