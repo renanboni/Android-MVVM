@@ -9,6 +9,8 @@ import com.boni.neon.di.contacts.ContactsModule
 import com.boni.neon.di.contacts.ContactsSubComponent
 import com.boni.neon.di.historic.HistoricModule
 import com.boni.neon.di.historic.HistoricSubComponent
+import com.boni.neon.di.sendmoney.SendMoneyModule
+import com.boni.neon.di.sendmoney.SendMoneySubComponent
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,4 +20,5 @@ interface AppComponent {
     fun plus(homeModule: HomeModule): HomeSubComponent
     fun plus(contactsModule: ContactsModule): ContactsSubComponent
     fun plus(historicModule: HistoricModule): HistoricSubComponent
+    fun plus(sendMoneyModule: SendMoneyModule): SendMoneySubComponent
 }

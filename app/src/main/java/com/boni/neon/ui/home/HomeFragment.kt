@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        history.setOnClickListener {
+        send.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
         }
 

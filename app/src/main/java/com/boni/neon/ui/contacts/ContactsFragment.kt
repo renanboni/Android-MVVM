@@ -37,7 +37,7 @@ class ContactsFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (activity?.application as NeonApplication).createSendMoneyComponent()?.inject(this)
+        (activity?.application as NeonApplication).createContactsComponent()?.inject(this)
         contactsVieModel = ViewModelProviders.of(this, factory).get(ContactsVieModel::class.java)
 
         contactsVieModel.getContacts()

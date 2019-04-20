@@ -1,70 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:gravity="center"
-        android:padding="12dp"
         android:background="@drawable/send_money_dialog_background"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <ImageView
-            android:id="@+id/close"
-            android:src="@drawable/ic_close_white_36dp"
-            android:layout_gravity="start"
-            android:layout_width="36dp"
-            android:layout_height="36dp"/>
-
-    <com.boni.neon.ui.widgets.CircularImageView
-            android:id="@+id/avatarImg"
-            android:layout_width="64dp"
-            android:layout_height="64dp"/>
-
-    <TextView
-            android:id="@+id/nameTxt"
-            tools:text="Renan Boni"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:id="@+id/phoneTxt"
-            tools:text="(18) 99137-0488"
-            android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:text="Valor a enviar:"
-            android:layout_marginTop="12dp"
-            android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    <EditText
-            android:id="@+id/valueTxt"
-            android:background="@drawable/send_money_edittext_background"
+    <LinearLayout
+            android:orientation="vertical"
             android:gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:inputType="numberDecimal"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/colorAccent"
+            android:padding="12dp"
             android:layout_width="match_parent"
-            android:layout_height="48dp"/>
+            android:layout_height="wrap_content">
 
-    <Button
-            android:id="@+id/history"
-            android:text="Enviar"
-            android:layout_marginTop="4dp"
-            app:cornerRadius="32dp"
-            android:textColor="@android:color/white"
+        <ImageView
+                android:id="@+id/close"
+                android:src="@drawable/ic_close_white_36dp"
+                android:layout_gravity="start"
+                android:layout_width="36dp"
+                android:layout_height="36dp"/>
+
+        <com.boni.neon.ui.widgets.CircularImageView
+                android:id="@+id/avatarImg"
+                android:layout_width="64dp"
+                android:layout_height="64dp"/>
+
+        <TextView
+                android:id="@+id/nameTxt"
+                tools:text="Renan Boni"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/phoneTxt"
+                tools:text="(18) 99137-0488"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:text="Valor a enviar:"
+                android:layout_marginTop="12dp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ProgressBar
+                android:id="@+id/progress"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/valueTxt"
+                android:background="@drawable/send_money_edittext_background"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:inputType="numberDecimal"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
+
+        <Button
+                android:id="@+id/send"
+                android:text="Enviar"
+                android:layout_marginTop="4dp"
+                app:cornerRadius="32dp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"/>
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/fireworks"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"/>
-</LinearLayout>
+            android:layout_height="250dp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_fileName="fireworks.json"/>
+</FrameLayout>

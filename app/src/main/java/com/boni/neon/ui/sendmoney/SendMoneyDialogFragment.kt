@@ -1,5 +1,6 @@
 package com.boni.neon.ui.sendmoney
 
+import android.animation.Animator
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -8,12 +9,26 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.animation.doOnEnd
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.boni.neon.NeonApplication
 import com.boni.neon.entities.ContactView
+import com.boni.neon.ext.hide
+import com.boni.neon.ext.show
+import com.boni.neon.ext.showMessage
 import com.boni.neon.ext.toMonetary
 import kotlinx.android.synthetic.main.send_money_dialog.*
+import javax.inject.Inject
 
 class SendMoneyDialogFragment: DialogFragment() {
+
+    private lateinit var sendMoneyViewModel: SendMoneyViewModel
+
+    @Inject
+    lateinit var factory: SendMoneyVMFactory
 
     companion object {
         const val TAG = "SendMoneyDialogFragment"
@@ -42,8 +57,28 @@ class SendMoneyDialogFragment: DialogFragment() {
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        (activity?.application as NeonApplication).createSendMoneySubComponent()?.inject(this)
+        sendMoneyViewModel = ViewModelProviders.of(this, factory).get(SendMoneyViewModel::class.java)
+    }
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
+
+        sendMoneyViewModel.viewState.observe(this, Observer {
+            it?.let { handleState(it) }
+        })
+
+        sendMoneyViewModel.error.observe(this, Observer {
+            it?.let {
+                activity?.showMessage(it.localizedMessage)
+            }
+        })
 
         arguments?.let {
             with(it.getSerializable(CONTACT) as ContactView) {
@@ -51,10 +86,13 @@ class SendMoneyDialogFragment: DialogFragment() {
                 phoneTxt.text = phone
                 avatarImg.setImage(avatar)
                 avatarImg.setName(name)
+
+                sendMoneyViewModel.clientId = id
             }
         }
 
         close.setOnClickListener { dismiss() }
+        send.setOnClickListener { sendMoneyViewModel.sendMoney() }
 
         valueTxt.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable) {}
@@ -72,6 +110,7 @@ class SendMoneyDialogFragment: DialogFragment() {
                     val cleanString = s.toString().replace("[R$,.]".toRegex(), "")
 
                     val parsed = cleanString.toFloat()
+                    sendMoneyViewModel.value = parsed
                     val formatted = parsed.toMonetary()
 
                     current = formatted
@@ -82,6 +121,23 @@ class SendMoneyDialogFragment: DialogFragment() {
                 }
             }
         })
+
+        setupAnimation()
+    }
+
+    private fun handleState(state: SendMoneyState) {
+        if(state.isLoading) {
+            progress.show()
+            send.isEnabled = false
+        } else {
+            progress.hide()
+            send.isEnabled = true
+        }
+
+        if(state.moneySent) {
+            fireworks.show()
+            fireworks.playAnimation()
+        }
     }
 
     override fun onResume() {
@@ -92,5 +148,23 @@ class SendMoneyDialogFragment: DialogFragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT)
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    private fun setupAnimation() {
+        fireworks.addAnimatorListener(object: Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator?) {}
+
+            override fun onAnimationEnd(animation: Animator) {
+                activity?.showMessage("Sua transferência foi executada com sucesso! Aproveite para fazer outra :)")
+                dismiss()
+            }
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        fireworks?.removeAllAnimatorListeners()
     }
 }

@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
 
     <Button
-            android:id="@+id/history"
+            android:id="@+id/send"
             android:text="Histórico de envios"
             android:layout_width="0dp"
             android:layout_marginBottom="32dp"
@@ -31,7 +31,7 @@
             android:padding="16dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/history"
+            app:layout_constraintBottom_toTopOf="@+id/send"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"

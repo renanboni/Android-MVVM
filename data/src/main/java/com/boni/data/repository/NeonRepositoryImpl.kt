@@ -14,7 +14,6 @@ class NeonRepositoryImpl (
     private val contactMapper: ContactMapper,
     private val transferMapper: TransferMapper
 ): NeonRepository {
-
     override fun getContacts(): Observable<MutableList<ContactEntity>> {
         return api.getContacts()
             .subscribeOn(Schedulers.io())
@@ -27,8 +26,11 @@ class NeonRepositoryImpl (
             .map { it.map { transferMapper.mapFromModel(it) }.toMutableList() }
     }
 
-    override fun sendMoney(): Observable<Boolean> {
-        return api.sendMoney()
+    override fun sendMoney(
+        clientId: String,
+        value: Float
+    ): Observable<Boolean> {
+        return api.sendMoney(clientId, value)
             .subscribeOn(Schedulers.io())
     }
 }

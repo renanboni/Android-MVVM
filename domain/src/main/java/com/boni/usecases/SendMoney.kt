@@ -13,7 +13,10 @@ class SendMoney (
             throw IllegalArgumentException("You must provide value and clientId in order to send money!")
         }
 
-        return neonRepository.sendMoney()
+        return neonRepository.sendMoney(
+            params.clientId,
+            params.value
+        )
     }
 
     data class Params constructor(

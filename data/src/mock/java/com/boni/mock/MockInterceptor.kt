@@ -14,6 +14,7 @@ class MockInterceptor: Interceptor {
         private const val GENERATE_TOKEN = "/GenerateToken"
         private const val CONTACTS = "/Contacts"
         private const val TRANSFERS = "/GetTransfers"
+        private const val SEND_MONEY = "/SendMoney"
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -27,6 +28,7 @@ class MockInterceptor: Interceptor {
                 GENERATE_TOKEN -> MockData.getUser()
                 CONTACTS -> MockData.getContacts()
                 TRANSFERS -> MockData.getTransfers()
+                SEND_MONEY -> true
                 else -> ""
             }
 

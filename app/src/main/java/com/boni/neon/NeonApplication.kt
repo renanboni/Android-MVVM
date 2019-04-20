@@ -10,6 +10,8 @@ import com.boni.neon.di.contacts.ContactsModule
 import com.boni.neon.di.contacts.ContactsSubComponent
 import com.boni.neon.di.historic.HistoricModule
 import com.boni.neon.di.historic.HistoricSubComponent
+import com.boni.neon.di.sendmoney.SendMoneyModule
+import com.boni.neon.di.sendmoney.SendMoneySubComponent
 
 class NeonApplication: Application() {
 
@@ -18,6 +20,7 @@ class NeonApplication: Application() {
     private var homeSubComponent: HomeSubComponent? = null
     private var contactsSubComponent: ContactsSubComponent? = null
     private var historicSubComponent: HistoricSubComponent? = null
+    private var sendMoneySubComponent: SendMoneySubComponent? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -34,7 +37,7 @@ class NeonApplication: Application() {
         return homeSubComponent
     }
 
-    fun createSendMoneyComponent(): ContactsSubComponent? {
+    fun createContactsComponent(): ContactsSubComponent? {
         if(contactsSubComponent == null) {
             contactsSubComponent = appComponent.plus(ContactsModule())
         }
@@ -47,5 +50,13 @@ class NeonApplication: Application() {
         }
 
         return historicSubComponent
+    }
+
+    fun createSendMoneySubComponent(): SendMoneySubComponent? {
+        if(sendMoneySubComponent == null) {
+            sendMoneySubComponent = appComponent.plus(SendMoneyModule())
+        }
+
+        return sendMoneySubComponent
     }
 }
