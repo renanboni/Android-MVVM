@@ -1,4 +1,4 @@
-package com.boni.domain.test
+package com.boni.domain.factory
 
 import com.boni.domain.entities.ContactEntity
 import com.boni.domain.entities.TransferEntity
@@ -11,7 +11,7 @@ object ContactDataFactory {
         return UUID.randomUUID().toString()
     }
 
-    fun makeContact(): ContactEntity {
+    private fun makeContact(): ContactEntity {
         return ContactEntity(
             randomString(),
             randomString(),
@@ -21,7 +21,7 @@ object ContactDataFactory {
         )
     }
 
-    fun makeTransfer(): TransferEntity {
+    private fun makeTransfer(): TransferEntity {
         return TransferEntity(
             randomString(),
             randomString(),

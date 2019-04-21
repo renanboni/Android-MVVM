@@ -4,7 +4,7 @@ import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
 import com.boni.domain.entities.ContactEntity
 import com.boni.domain.entities.TransferEntity
-import com.boni.domain.test.ContactDataFactory
+import com.boni.domain.factory.ContactDataFactory
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
 import org.junit.Before

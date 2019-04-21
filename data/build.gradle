@@ -57,11 +57,10 @@ dependencies {
     implementation rootProject.ext.retrofitGsonConverter
     implementation rootProject.ext.retrofitRxJava2Adapter
 
-
-
-
     testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.mockito
+    testImplementation rootProject.ext.mockitoKotlin
+
     androidTestImplementation rootProject.ext.androidTestRunner
 
     implementation project(':domain')

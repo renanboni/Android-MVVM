@@ -3,7 +3,7 @@ package com.boni.domain.usecases
 import com.boni.PostExecutionThread
 import com.boni.domain.AuthRepository
 import com.boni.domain.entities.UserEntity
-import com.boni.domain.test.ContactDataFactory
+import com.boni.domain.factory.ContactDataFactory
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
 import org.junit.Before
