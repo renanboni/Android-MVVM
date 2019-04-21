@@ -8,7 +8,7 @@ import com.boni.domain.entities.UserEntity
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class AuthRepositoryImpl (
+class AuthRepositoryImpl(
     private val authApi: AuthApi,
     private val mapper: UserMapper,
     private val tokenManager: TokenManager
@@ -21,10 +21,9 @@ class AuthRepositoryImpl (
         return authApi.authenticate(
             email = email,
             name = name
-        ).subscribeOn(Schedulers.io())
-            .map {
-                tokenManager.saveToken(it.token)
-                mapper.mapFromModel(it)
-            }
+        ).map {
+            tokenManager.saveToken(it.token)
+            mapper.mapFromModel(it)
+        }
     }
 }

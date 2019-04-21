@@ -18,13 +18,11 @@ class NeonRepositoryImpl (
 ): NeonRepository {
     override fun getContacts(): Observable<MutableList<ContactEntity>> {
         return api.getContacts(tokenManager.retrieveToken())
-            .subscribeOn(Schedulers.io())
             .map { it.map { contactMapper.mapFromModel(it) }.toMutableList() }
     }
 
     override fun getTransfers(): Observable<MutableList<TransferEntity>> {
         return api.getTransfers(tokenManager.retrieveToken())
-            .subscribeOn(Schedulers.io())
             .map { it.map { transferMapper.mapFromModel(it) }.toMutableList() }
     }
 
@@ -33,6 +31,5 @@ class NeonRepositoryImpl (
         value: Float
     ): Observable<Boolean> {
         return api.sendMoney(tokenManager.retrieveToken(), clientId, value)
-            .subscribeOn(Schedulers.io())
     }
 }
