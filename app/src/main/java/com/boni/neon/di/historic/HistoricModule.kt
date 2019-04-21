@@ -3,10 +3,8 @@ package com.boni.neon.di.historic
 import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
 import com.boni.neon.mapper.ContactViewMapper
-import com.boni.neon.ui.contacts.ContactsVMFactory
 import com.boni.neon.ui.historic.HistoryVMFactory
-import com.boni.usecases.GetContacts
-import com.boni.usecases.GetTransfers
+import com.boni.domain.usecases.GetTransfers
 import dagger.Module
 import dagger.Provides
 

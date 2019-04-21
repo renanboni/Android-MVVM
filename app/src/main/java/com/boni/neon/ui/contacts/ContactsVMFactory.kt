@@ -3,7 +3,7 @@ package com.boni.neon.ui.contacts
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.boni.neon.mapper.ContactViewMapper
-import com.boni.usecases.GetContacts
+import com.boni.domain.usecases.GetContacts
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")

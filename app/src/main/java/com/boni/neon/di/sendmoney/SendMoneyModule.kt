@@ -3,7 +3,7 @@ package com.boni.neon.di.sendmoney
 import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
 import com.boni.neon.ui.sendmoney.SendMoneyVMFactory
-import com.boni.usecases.SendMoney
+import com.boni.domain.usecases.SendMoney
 import dagger.Module
 import dagger.Provides
 

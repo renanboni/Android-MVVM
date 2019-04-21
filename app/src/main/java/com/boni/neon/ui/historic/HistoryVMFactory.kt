@@ -3,7 +3,7 @@ package com.boni.neon.ui.historic
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.boni.neon.mapper.ContactViewMapper
-import com.boni.usecases.GetTransfers
+import com.boni.domain.usecases.GetTransfers
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")

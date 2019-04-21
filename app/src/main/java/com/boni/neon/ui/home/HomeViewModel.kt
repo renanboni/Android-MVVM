@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.boni.domain.entities.UserEntity
 import com.boni.neon.mapper.UserViewMapper
-import com.boni.usecases.GetUser
+import com.boni.domain.usecases.GetUser
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 

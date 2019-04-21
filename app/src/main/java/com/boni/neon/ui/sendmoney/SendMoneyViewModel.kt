@@ -2,7 +2,7 @@ package com.boni.neon.ui.sendmoney
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.boni.usecases.SendMoney
+import com.boni.domain.usecases.SendMoney
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 

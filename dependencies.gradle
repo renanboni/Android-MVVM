@@ -19,4 +19,5 @@ ext {
     junit = "junit:junit:4.12"
     mockito = "org.mockito:mockito-core:2.8.47"
     androidTestRunner = "com.android.support.test:runner:1.0.1"
+    mockitoKotlin = "com.nhaarman:mockito-kotlin:1.5.0"
 }

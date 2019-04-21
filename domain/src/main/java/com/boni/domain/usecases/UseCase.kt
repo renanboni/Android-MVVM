@@ -1,4 +1,4 @@
-package com.boni.usecases
+package com.boni.domain.usecases
 
 import com.boni.PostExecutionThread
 import io.reactivex.Observable

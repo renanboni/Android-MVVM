@@ -1,4 +1,4 @@
-package com.boni.usecases
+package com.boni.domain.usecases
 
 import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
@@ -11,7 +11,7 @@ class GetTransfers (
     private val neonRepository: NeonRepository,
     postExecutionThread: PostExecutionThread
 ): UseCase<Pair<MutableList<ContactEntity>, MutableList<TransferEntity>>, Nothing?>(postExecutionThread) {
-    override fun buildUseCaseObservable(params: Nothing?): Observable<Pair<MutableList<ContactEntity>, MutableList<TransferEntity>>> {
+    public override fun buildUseCaseObservable(params: Nothing?): Observable<Pair<MutableList<ContactEntity>, MutableList<TransferEntity>>> {
         return Observable.zip(
             neonRepository.getContacts(),
             neonRepository.getTransfers(),

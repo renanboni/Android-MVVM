@@ -1,4 +1,4 @@
-package com.boni.usecases
+package com.boni.domain.usecases
 
 import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
@@ -8,7 +8,7 @@ class SendMoney (
     private val neonRepository: NeonRepository,
     postExecutionThread: PostExecutionThread
 ): UseCase<Boolean, SendMoney.Params?>(postExecutionThread) {
-    override fun buildUseCaseObservable(params: Params?): Observable<Boolean> {
+    public override fun buildUseCaseObservable(params: Params?): Observable<Boolean> {
         if(params == null) {
             throw IllegalArgumentException("You must provide value and clientId in order to send money!")
         }

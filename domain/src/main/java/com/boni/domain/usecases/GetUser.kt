@@ -1,4 +1,4 @@
-package com.boni.usecases
+package com.boni.domain.usecases
 
 import com.boni.PostExecutionThread
 import com.boni.domain.AuthRepository
@@ -10,7 +10,7 @@ class GetUser (
     postExecutionThread: PostExecutionThread
 ): UseCase<UserEntity, GetUser.Params?>(postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: Params?): Observable<UserEntity> {
+    public override fun buildUseCaseObservable(params: Params?): Observable<UserEntity> {
         if(params == null) {
             throw IllegalArgumentException("You must provide name and email in order to receive a user!")
         }

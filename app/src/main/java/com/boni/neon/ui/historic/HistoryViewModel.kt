@@ -7,7 +7,7 @@ import com.boni.domain.entities.TransferEntity
 import com.boni.neon.entities.ContactView
 import com.boni.neon.entities.GraphView
 import com.boni.neon.mapper.ContactViewMapper
-import com.boni.usecases.GetTransfers
+import com.boni.domain.usecases.GetTransfers
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 

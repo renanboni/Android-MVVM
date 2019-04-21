@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.boni.domain.entities.ContactEntity
 import com.boni.neon.mapper.ContactViewMapper
-import com.boni.usecases.GetContacts
+import com.boni.domain.usecases.GetContacts
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 

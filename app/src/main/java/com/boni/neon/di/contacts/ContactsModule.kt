@@ -4,7 +4,7 @@ import com.boni.PostExecutionThread
 import com.boni.domain.NeonRepository
 import com.boni.neon.mapper.ContactViewMapper
 import com.boni.neon.ui.contacts.ContactsVMFactory
-import com.boni.usecases.GetContacts
+import com.boni.domain.usecases.GetContacts
 import dagger.Module
 import dagger.Provides
 

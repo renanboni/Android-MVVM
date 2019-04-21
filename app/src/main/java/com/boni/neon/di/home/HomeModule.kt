@@ -4,7 +4,7 @@ import com.boni.PostExecutionThread
 import com.boni.domain.AuthRepository
 import com.boni.neon.mapper.UserViewMapper
 import com.boni.neon.ui.home.HomeVMFactory
-import com.boni.usecases.GetUser
+import com.boni.domain.usecases.GetUser
 import dagger.Module
 import dagger.Provides
 

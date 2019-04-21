@@ -3,7 +3,7 @@ package com.boni.neon.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.boni.neon.mapper.UserViewMapper
-import com.boni.usecases.GetUser
+import com.boni.domain.usecases.GetUser
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")

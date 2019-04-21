@@ -2,7 +2,7 @@ package com.boni.neon.ui.sendmoney
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.boni.usecases.SendMoney
+import com.boni.domain.usecases.SendMoney
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
