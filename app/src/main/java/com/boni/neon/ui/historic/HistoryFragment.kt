@@ -12,6 +12,7 @@ import com.boni.neon.NeonApplication
 import com.boni.neon.R
 import com.boni.neon.ext.hide
 import com.boni.neon.ext.show
+import com.boni.neon.ext.showErrorMessage
 import com.boni.neon.ui.contacts.ContactListItemDecorator
 import kotlinx.android.synthetic.main.empty_state.*
 import kotlinx.android.synthetic.main.fragment_history.*
@@ -48,6 +49,13 @@ class HistoryFragment: Fragment() {
 
         historicViewModel.viewState.observe(this, Observer {
             it?.let { handleState(it) }
+        })
+
+        historicViewModel.error.observe(this, Observer {
+            it?.let { err ->
+                progress.hide()
+                showErrorMessage({ historicViewModel.getTransfers() }, it.localizedMessage)
+            }
         })
     }
 

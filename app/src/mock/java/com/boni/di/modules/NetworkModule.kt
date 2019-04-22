@@ -1,4 +1,4 @@
-package com.boni.neon.di.modules
+package com.boni.di.modules
 
 import com.boni.data.api.AuthApi
 import com.boni.data.api.NeonApi

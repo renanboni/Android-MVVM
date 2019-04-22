@@ -1,11 +1,11 @@
 package com.boni.neon
 
 import android.app.Application
+import com.boni.di.modules.NetworkModule
 import com.boni.neon.di.AppComponent
 import com.boni.neon.di.DaggerAppComponent
 import com.boni.neon.di.home.HomeModule
 import com.boni.neon.di.home.HomeSubComponent
-import com.boni.neon.di.modules.NetworkModule
 import com.boni.neon.di.contacts.ContactsModule
 import com.boni.neon.di.contacts.ContactsSubComponent
 import com.boni.neon.di.historic.HistoricModule

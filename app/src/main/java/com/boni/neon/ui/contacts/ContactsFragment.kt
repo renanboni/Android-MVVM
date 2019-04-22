@@ -13,6 +13,7 @@ import com.boni.neon.R
 import com.boni.neon.entities.ContactView
 import com.boni.neon.ext.hide
 import com.boni.neon.ext.show
+import com.boni.neon.ext.showErrorMessage
 import com.boni.neon.ui.sendmoney.SendMoneyDialogFragment
 import kotlinx.android.synthetic.main.empty_state.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
@@ -49,6 +50,13 @@ class ContactsFragment: Fragment() {
 
         contactsVieModel.viewState.observe(this, Observer {
             it?.let { handleState(it) }
+        })
+
+        contactsVieModel.error.observe(this, Observer {
+            it?.let { err ->
+                progress.hide()
+                showErrorMessage({ contactsVieModel.getContacts() }, it.localizedMessage)
+            }
         })
     }
 
