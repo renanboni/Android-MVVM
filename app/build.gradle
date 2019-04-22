@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.boni.neon"
         minSdkVersion 16
@@ -27,13 +28,24 @@ android {
 
     buildTypes {
         debug {
-
+            buildConfigField "String", "ENDPOINT", "\"http://processoseletivoneon.neonhomol.com.br\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "ENDPOINT", "\"http://server.ws/app/homolog\""
+            buildConfigField "String", "ENDPOINT", "\"http://processoseletivoneon.neon.com.br\""
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 }
 
@@ -54,17 +66,18 @@ dependencies {
     implementation rootProject.ext.retrofit
     implementation rootProject.ext.retrofitGsonConverter
     implementation rootProject.ext.retrofitRxJava2Adapter
+    implementation rootProject.ext.lottie
+    implementation rootProject.ext.ktx
+    implementation rootProject.ext.picasso
 
-    implementation 'com.airbnb.android:lottie:2.5.0-rc1'
-
-    implementation "androidx.core:core-ktx:1.0.0"
-
-    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation "android.arch.lifecycle:extensions:1.1.0"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    testImplementation 'org.mockito:mockito-core:2.18.3'
+    androidTestImplementation 'org.mockito:mockito-android:2.18.3'
+
+    testImplementation rootProject.ext.junit
+
+    androidTestImplementation rootProject.ext.androidTestRunner
 
     implementation project(':domain')
     implementation project(':data')

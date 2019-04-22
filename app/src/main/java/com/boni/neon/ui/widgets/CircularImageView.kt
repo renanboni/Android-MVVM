@@ -76,7 +76,10 @@ class CircularImageView @JvmOverloads constructor(
 
         with(text.split(" ")) {
             name.text = if(count() > 1) {
-                (get(0)[0].toString() + get(0)[1]).toUpperCase()
+                val firstName = get(0)[0].toString()
+                val lastName = get(1)[0].toString()
+
+                "$firstName$lastName"
             } else {
                 get(0)[0].toUpperCase().toString()
             }

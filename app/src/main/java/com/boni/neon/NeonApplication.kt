@@ -26,7 +26,7 @@ class NeonApplication: Application() {
         super.onCreate()
 
         appComponent = DaggerAppComponent.builder()
-            .networkModule(NetworkModule("http://processoseletivoneon.neonhomol.com.br"))
+            .networkModule(NetworkModule(BuildConfig.ENDPOINT))
             .build()
     }
 

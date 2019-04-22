@@ -3,7 +3,7 @@ ext {
     // Android
     minSdkVersion = 21
     targetSdkVersion = 27
-    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     androidSupportLibVersion = "27.0.2"
     room = "android.arch.persistence.room:runtime:1.0.0"
@@ -13,11 +13,13 @@ ext {
     retrofit = "com.squareup.retrofit2:retrofit:2.3.0"
     retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:2.3.0"
     retrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-
+    lottie = "com.airbnb.android:lottie:2.5.0-rc1"
+    ktx = "androidx.core:core-ktx:1.0.0"
+    picasso = "com.squareup.picasso:picasso:2.71828"
 
     // Testing
     junit = "junit:junit:4.12"
     mockito = "org.mockito:mockito-core:2.8.47"
-    androidTestRunner = "com.android.support.test:runner:1.0.1"
+    androidTestRunner = "androidx.test:runner:1.1.0"
     mockitoKotlin = "com.nhaarman:mockito-kotlin:1.5.0"
 }

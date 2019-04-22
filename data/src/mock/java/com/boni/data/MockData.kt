@@ -3,11 +3,7 @@ package com.boni.data
 import com.boni.domain.entities.ContactEntity
 import com.boni.domain.entities.TransferEntity
 import com.boni.domain.entities.UserEntity
-import com.boni.mock.MockInterceptor
-import com.google.gson.Gson
-import okhttp3.Protocol
-import okhttp3.Response
-import okhttp3.ResponseBody
+import java.util.*
 
 class MockData {
     companion object {
@@ -23,7 +19,7 @@ class MockData {
             val c2 = ContactEntity("2", "Joao Antonio", "(11) 91234-0488", "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/10_avatar-512.png")
             val c3 = ContactEntity("3", "Joao Bernardo", "(11) 98482-0488", "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png")
             val c4 = ContactEntity("4", "Maria Luiza", "(16)99882-0488", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1sfG6usLmkeShGnkAPRXcLwRLwSzXyWUEASrxGvCyDLB_3kdD")
-            val c5 = ContactEntity("5", "Luiza Antonieta", "(18) 92022-1222", "https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png")
+            val c5 = ContactEntity("5", "Luiza Antonieta", "(18) 92022-1222", "")
             val c6 = ContactEntity("6", "Neymar Junior", "(19) 98722-1111", "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png")
             val c7 = ContactEntity("7", "Rogerio Ceni", "(22) 98221-1234", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1sfG6usLmkeShGnkAPRXcLwRLwSzXyWUEASrxGvCyDLB_3kdD")
             val c8 = ContactEntity("8", "Palmeiras Nao", "(11) 91231-12334", "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/10_avatar-512.png")
@@ -63,10 +59,20 @@ class MockData {
             clientId: String,
             value: Float
         ): Boolean {
-            val transfer = TransferEntity("1", clientId, value, "token", "data")
+            val transfer = TransferEntity(
+                randomString(),
+                clientId,
+                value,
+                randomString(),
+                randomString()
+            )
             transfers.add(transfer)
 
             return true
+        }
+
+        private fun randomString() : String {
+            return UUID.randomUUID().toString()
         }
     }
 }
